@@ -78,7 +78,7 @@ worksheet1.write_row(0, 0, df1.columns, header_format)
 worksheet2.write_row(0, 0, df2.columns, header_format)
 ```
 then the header will look like this:
-![header](../Entwurf/.save_excel_images/4dfa410f.png)
+![header](../Data/Pictures/4dfa410f.png)
 
 
 

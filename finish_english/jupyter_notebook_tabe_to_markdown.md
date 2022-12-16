@@ -1,3 +1,8 @@
+<!-- TOC -->
+* [How to convert](#how-to-convert)
+      * [Example:](#example-)
+<!-- TOC -->
+
 # How to convert
 
 I use Markdown to write my Blog, and I often show my dataframe in markdown file. Unfortunately, when I try to copy the
@@ -29,6 +34,7 @@ print(df.to_markdown(index=False))
 ```
 
 output:
+
 | Date      |    Int |   Int_with_seperator | String   |   Float |   Percent |
 |:----------|-------:|---------------------:|:---------|--------:|----------:|
 | 2022/11/1 | 233211 |               925478 | Apple    |   98.45 |    0.4234 |
