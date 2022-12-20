@@ -92,10 +92,7 @@
 | Kissinger Chen | 陈敬锋 | kissinger.j.chen@rrd.com | PKG Sachi Operation               | a.Gary Wang | 3525552 |
 | Leo Wan        | 万峰  | leo.f.wan@rrd.com        | PKG Emerging Operation&Commercial | b.Eric Shu  | 3627077 |
 | Mary Huang     | 黄丽  | mary.l.huang@rrd.com     | Supply Chain                      | g.Xu Bo     | 3524924 |
-| Aaron Zhou     | 周伟  | aaron.w.zhou@rrd.com     | PKG Emerging Operation&Commercial | b.Eric Shu  | 3555045 |
-| Ivy Chen       | 陈冰如 | ivy.b.chen@rrd.com       | PUB Operation                     | d.Jason Xue | 3609446 |
-| Glen Zhang     | 张宝宁 | glen.b.zhang@rrd.com     | Supply Chain                      | g.Xu Bo     | 3399879 |
-| Bruce Liu      | 刘俊  | bruce.j.liu@rrd.com      | PKG Emerging Operation&Commercial | b.Eric Shu  | 3634016 |
+
 
 ###### 表格作用
 提供姓名/工号 - BU的对应关系
@@ -112,18 +109,7 @@
 | Finance | 1     | 3920  |
 | Finance | 2     | 3920  |
 | Finance | 3     | 3920  |
-| Finance | 4     | 3920  |
-| Finance | 5     | 4193  |
-| Finance | 6     | 4193  |
-| Finance | 7     | 4500  |
-| Finance | 8     | 6912  |
-| Finance | 9     | 20826 |
-| Finance | 10    | 23478 |
-| Finance | 11    | 29069 |
-| Finance | 12    | 0     |
-| HR      | 1     | 24259 |
-| HR      | 2     | 32041 |
-| HR      | 3     | 39504 |
+
 
 ###### sheet说明
 引用的是名为【去年YTD】的sheet，其他sheet的变更不影响最终结果
@@ -139,7 +125,7 @@
 | RBE202101020011 | 12/24/2020 |  1000.0000 | 潍坊天成商务宾馆               | 12/24/2020 | 12/29/2020 | 5    | 徐波   | Brain Xu - 277197 | 3360716 | 当纳利(昆山)包装科技有限公司	 | Sachi PKG             | Sachi PKG Operation     | 2022-01-02 | APPROVED |
 | RBE202012310030 | 12/25/2020 |   378.0000 | 麗枫酒店                       | 12/24/2020 | 12/25/2020 | 1    | 曹剑勇 | jacky.j.cao       | 3553588 | 当纳利(成都)印刷有限公司     | Emerging PKG Domestic | Emerging PKG Commercial | 2022-01-02 | APPROVED |
 | RBE202101030016 | 11/19/2020 |   590.0000 | 万达文华酒店                   | 11/18/2020 | 11/19/2020 | 1    | 袁佳华 | dennis.j.yuan     | 3111936 | 当纳利(上海)贸易有限公司     | General               | Infrastructure          | 2022-01-03 | APPROVED |
-| RBE202101040007 | 1/1/2021   | 13410.0000 | 深圳市银濠花园酒店管理有限公司 | 11/17/2020 | 1/1/2021   | 45   | 程宏   | Hong chen         | 3531824 | 东莞当纳利印刷有限公司- 寮步 | Sachi PKG             | Sachi PKG Operation     | 2022-01-04 | APPROVED |
+
 
 ###### 计算中使用到的列
 RMB_AMT, 工号, SUBMIT_DTE
@@ -150,8 +136,9 @@ RMB_AMT, 工号, SUBMIT_DTE
 ###### 计算逻辑
 1. 根据工号找到BU
 2. 筛选当前年份的数据（SUBMIT_DTE）
-3. group by [year,month,BU], sum(RMB_AMT)
-4. merge YTD判断.xlsx
+3. merge YTD判断
+4. 筛选判断为true的数据 
+5. group by BU, sum(RMB_AMT)
 
 ### 2.4 表04机票YTD 2023年度.xlsx
 ###### 数据预览
@@ -160,15 +147,21 @@ RMB_AMT, 工号, SUBMIT_DTE
 | 14275173924 | 7/23/2022  | 1    | 0    | 490.00  | 0.00 | 0.49 | 3102821 | 黄惠昀 | 否    | 3      |
 | 14275405251 | 4/10/2022  | 1    | 0    | 1330.00 | 0.00 | 0.74 | 3117324 | 张隆恩 | 否    | 3      |
 | 14277595740 | 2/27/2022  | 1    | 0    | 950.00  | 0.00 | 0.53 | 3117486 | 严海  | 否    | 11     |
-| 14277578204 | 1/29/2022  | 1    | 0    | 940.00  | 0.00 | 0.37 | 3117486 | 严海  | 否    | 2      |
-| 14277587633 | 4/14/2022  | 1    | 0    | 580.00  | 0.00 | 0.23 | 3117486 | 严海  | 否    | 5      |
-| 14281818649 | 10/22/2022 | 1    | 0    | 870.00  | 0.00 | 0.42 | 3000043 | 王晓娟 | 否    | 5      |
+
 
 ##### 计算中使用到的列
 订单号、预定日期、出票张数、退票张数、实收实付、退票费、乘机人员工编号、乘机人、改签标签、提前预定天数
 
-#####
+##### 更新说明
 当有新数据需要更新的时候，不需要删除表中原有的数据，直接拼接即可
+
+###### 计算逻辑
+1. 根据乘机人员工编号找到BU
+2. 筛选当前年份的数据（预定日期）
+3. merge YTD判断
+4. 筛选判断为true的数据
+5. group by BU
+
 
 
 ### 2.5 表05已预订未使用的机票.xlsx
@@ -178,7 +171,7 @@ RMB_AMT, 工号, SUBMIT_DTE
 | 21646200506 | 朱枻豪 | CHU/SAIHO | 2022-11-15 12:50:05 | 3105442 | 1240.00 |
 | 21737709722 | 姚红艳 | 姚红艳       | 2022-12-05 11:04:11 | 3367870 | 930.00  |
 | 21737674704 | 汤轶凡 | 汤轶凡       | 2022-12-05 11:22:41 | 3113243 | 1490.00 |
-| 21739386305 | 黄华勇 | 黄华勇       | 2022-12-05 15:34:14 | 3540329 | 1190.00 |
+
 
 ###### 计算中使用到的列
 订单号、持卡人、乘客姓名、出票时间、持卡人员工编号、实收实付
